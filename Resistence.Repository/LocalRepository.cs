@@ -1,0 +1,25 @@
+﻿using Resistence_Entity;
+using Resistence_Entity.Interfaces;
+using System.Linq;
+
+namespace Resistence_Repository
+{
+    public class LocalRepository : ILocalRepository
+    {
+        private readonly BaseContext _context;
+        public LocalRepository(BaseContext context)
+        {
+            _context = context;
+        }
+        public Local buscarLocal(int idRebelde)
+        {
+            return _context.Locais.Where(x => x.IdRebelde == idRebelde).FirstOrDefault();
+        }
+
+        public bool atualizarLocal(Local local)
+        {
+            _context.Locais.Update(local);
+            return (_context.SaveChanges() > 0);
+        }
+    }
+}

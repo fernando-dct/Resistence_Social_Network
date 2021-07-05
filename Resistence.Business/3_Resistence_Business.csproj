@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Resistence_Business</RootNamespace>
+    <AssemblyName>Resistence_Business</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resistence.Entity\1_Resistence_Entity.csproj" />
+  </ItemGroup>
+
+</Project>
