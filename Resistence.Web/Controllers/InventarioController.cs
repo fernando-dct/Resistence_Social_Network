@@ -56,7 +56,7 @@ namespace Resistence_Web.Controllers
                     return BadRequest($"Os itens para troca do rebelde com id {item.IdRebelde} não foi informado.");
                 }
 
-                foreach (InventarioDTO inventario in item.Inventario)
+                foreach (InventarioDto inventario in item.Inventario)
                 {
                     inventario.Item = inventario.Item.ToLower().RemoveDiacritics();
                     if (_itemBusiness.ValidarItem(inventario.Item))

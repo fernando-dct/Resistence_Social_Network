@@ -32,17 +32,17 @@ namespace Resistence_XUnitTest.TestControllers
                 new TrocaDto
                 {
                     IdRebelde = 1,
-                    Inventario = new List<InventarioDTO>
+                    Inventario = new List<InventarioDto>
                     {
-                        new InventarioDTO { Item = "Arma", Quantidade = 1 }
+                        new InventarioDto { Item = "Arma", Quantidade = 1 }
                     }
                 },
                 new TrocaDto 
                 {
                     IdRebelde = 1,
-                    Inventario = new List<InventarioDTO>
+                    Inventario = new List<InventarioDto>
                     {
-                        new InventarioDTO { Item = "Arma", Quantidade = 1 }
+                        new InventarioDto { Item = "Arma", Quantidade = 1 }
                     }
                 }
 

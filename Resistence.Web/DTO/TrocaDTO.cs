@@ -8,6 +8,6 @@ namespace Resistence_Web.DTO
         public int IdRebelde { get; set; }
         [JsonIgnore]
         public int PontuacaoTotalInformada { get; set; }
-        public IList<InventarioDTO> Inventario { get; set; }
+        public IList<InventarioDto> Inventario { get; set; }
     }
 }
