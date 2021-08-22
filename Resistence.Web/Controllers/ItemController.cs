@@ -16,9 +16,9 @@ namespace Resistence_Web.Controllers
 
         [HttpGet]
         [Route("buscarItens")]
-        public IActionResult buscarItens()
+        public IActionResult BuscarItens()
         {
-            return Ok(_itemBusiness.buscarItens());
+            return Ok(_itemBusiness.BuscarItens());
         }
     }
 }

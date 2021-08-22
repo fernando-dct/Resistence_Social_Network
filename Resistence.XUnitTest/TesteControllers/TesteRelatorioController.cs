@@ -20,37 +20,37 @@ namespace Resistence_XUnitTest.TestControllers
 
 
         [Fact]
-        public void testarBuscaPontosPerdidosTraidores()
+        public void TestarBuscaPontosPerdidosTraidores()
         {
-            _relatorioBusiness.Setup(x => x.buscarPontosPerdidosTraidores()).Returns(1);
-            ObjectResult result = (ObjectResult)_relatorioController.buscarPontosPerdidosTraidores();
-            Assert.Equal(1, ((RelatorioDTO)result.Value).Quantidade);
+            _relatorioBusiness.Setup(x => x.BuscarPontosPerdidosTraidores()).Returns(1);
+            ObjectResult result = (ObjectResult)_relatorioController.BuscarPontosPerdidosTraidores();
+            Assert.Equal(1, ((RelatorioDto)result.Value).Quantidade);
             Assert.Equal(_duzentos, result.StatusCode);
         }
 
         [Fact]
-        public void testarBuscaPorcentagemRebeldes()
+        public void TestarBuscaPorcentagemRebeldes()
         {
-            _relatorioBusiness.Setup(x => x.buscarPorcentagemRebeldes()).Returns(1);
-            ObjectResult result = (ObjectResult)_relatorioController.buscarPorcentagemRebeldes();
-            Assert.Equal(1, ((RelatorioDTO)result.Value).Quantidade);
+            _relatorioBusiness.Setup(x => x.BuscarPorcentagemRebeldes()).Returns(1);
+            ObjectResult result = (ObjectResult)_relatorioController.BuscarPorcentagemRebeldes();
+            Assert.Equal(1, ((RelatorioDto)result.Value).Quantidade);
             Assert.Equal(_duzentos, result.StatusCode);
         }
 
         [Fact]
-        public void testarBuscaPorcentagemTraidores()
+        public void TestarBuscaPorcentagemTraidores()
         {
-            _relatorioBusiness.Setup(x => x.buscarPorcentagemTraidores()).Returns(1);
-            ObjectResult result = (ObjectResult)_relatorioController.buscarPorcentagemTraidores();
-            Assert.Equal(1, ((RelatorioDTO)result.Value).Quantidade);
+            _relatorioBusiness.Setup(x => x.BuscarPorcentagemTraidores()).Returns(1);
+            ObjectResult result = (ObjectResult)_relatorioController.BuscarPorcentagemTraidores();
+            Assert.Equal(1, ((RelatorioDto)result.Value).Quantidade);
             Assert.Equal(_duzentos, result.StatusCode);
         }
 
         [Fact]
-        public void testarBuscaQuantidadeMediaRecurso()
+        public void TestarBuscaQuantidadeMediaRecurso()
         {
-            _relatorioBusiness.Setup(x => x.buscarQuantidadeMediaRecurso()).Returns(new List<RelatorioMedia>());
-            ObjectResult result = (ObjectResult)_relatorioController.buscarQuantidadeMediaRecurso();
+            _relatorioBusiness.Setup(x => x.BuscarQuantidadeMediaRecurso()).Returns(new List<RelatorioMedia>());
+            ObjectResult result = (ObjectResult)_relatorioController.BuscarQuantidadeMediaRecurso();
             Assert.Equal(_duzentos, result.StatusCode);
         }
     }

@@ -12,31 +12,31 @@ namespace Resistence_Business
             _rebeldeRepository = rebeldeRepository;
         }
 
-        public int adicionarRebelde(Rebelde rebelde)
+        public int AdicionarRebelde(Rebelde rebelde)
         {
-            return _rebeldeRepository.adicionarRebelde(rebelde);
+            return _rebeldeRepository.AdicionarRebelde(rebelde);
         }
 
-        public Rebelde buscarRebelde(int idRebelde)
+        public Rebelde BuscarRebelde(int idRebelde)
         {
-            return _rebeldeRepository.buscarRebelde(idRebelde);
+            return _rebeldeRepository.BuscarRebelde(idRebelde);
         }
 
-        public bool reportarTraidor(int idRebelde)
+        public bool ReportarTraidor(int idRebelde)
         {
-            Rebelde rebelde = _rebeldeRepository.buscarRebelde(idRebelde);
+            Rebelde rebelde = _rebeldeRepository.BuscarRebelde(idRebelde);
             if (rebelde == null)
             {
                 return false;
             }
 
             rebelde.QtdeReportadaTraidor++;
-            return _rebeldeRepository.atualizarDadosRebelde(rebelde);
+            return _rebeldeRepository.AtualizarDadosRebelde(rebelde);
         }
 
-        public bool validarRebedeTraidor(int idRebelde)
+        public bool ValidarRebedeTraidor(int idRebelde)
         {
-            return _rebeldeRepository.buscarRebelde(idRebelde).QtdeReportadaTraidor >= 3;
+            return _rebeldeRepository.BuscarRebelde(idRebelde).QtdeReportadaTraidor >= 3;
         }
     }
 }

@@ -18,12 +18,12 @@ namespace Resistence_Repository
             context.SaveChanges();
         }
 
-        public IList<Item> buscarItens()
+        public IList<Item> BuscarItens()
         {
             return _context.Itens.ToList();
         }
 
-        public Item buscarItem(string item)
+        public Item BuscarItem(string item)
         {
             return _context.Itens.FirstOrDefault(x => x.Nome.ToLower() == item.ToLower());
         }

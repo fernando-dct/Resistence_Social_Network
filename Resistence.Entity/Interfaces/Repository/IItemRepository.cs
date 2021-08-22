@@ -4,7 +4,7 @@ namespace Resistence_Entity.Interfaces
 {
     public interface IItemRepository
     {
-        IList<Item> buscarItens();
-        Item buscarItem(string item);
+        IList<Item> BuscarItens();
+        Item BuscarItem(string item);
     }
 }

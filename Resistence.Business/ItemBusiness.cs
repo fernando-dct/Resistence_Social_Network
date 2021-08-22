@@ -12,19 +12,19 @@ namespace Resistence_Business
             _itemRepository = itemRepository;
         }
 
-        public IList<Item> buscarItens()
+        public IList<Item> BuscarItens()
         {
-            return _itemRepository.buscarItens();
+            return _itemRepository.BuscarItens();
         }
 
-        public bool validarItem(string item)
+        public bool ValidarItem(string item)
         {
-            return _itemRepository.buscarItem(item) == null;
+            return _itemRepository.BuscarItem(item) == null;
         }
 
-        public int buscarPontuacaoItem(string item)
+        public int BuscarPontuacaoItem(string item)
         {
-            return _itemRepository.buscarItem(item).Pontuacao;
+            return _itemRepository.BuscarItem(item).Pontuacao;
         }
     }
 }

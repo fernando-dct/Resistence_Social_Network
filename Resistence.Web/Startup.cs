@@ -26,7 +26,7 @@ namespace Resistence_Web
             services.AddMvc().AddNewtonsoftJson(op => { op.SerializerSettings.ContractResolver = new DefaultContractResolver(); });
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ErrorHandlingFilter());
+                options.Filters.Add(new ErrorHandlingFilterAttribute());
             });
             services.AddSwaggerGen();
         }

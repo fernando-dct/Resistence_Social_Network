@@ -17,36 +17,42 @@ namespace Resistence_Web.Controllers
 
         [HttpGet]
         [Route("buscarPorcentagemRebeldes")]
-        public IActionResult buscarPorcentagemRebeldes()
+        public IActionResult BuscarPorcentagemRebeldes()
         {
-            RelatorioDTO relatorio = new RelatorioDTO();
-            relatorio.Quantidade = _relatorioBusiness.buscarPorcentagemRebeldes();
+            RelatorioDto relatorio = new RelatorioDto
+            {
+                Quantidade = _relatorioBusiness.BuscarPorcentagemRebeldes()
+            };
             return Ok(relatorio);
         }
 
         [HttpGet]
         [Route("buscarPontosPerdidosTraidores")]
-        public IActionResult buscarPontosPerdidosTraidores()
+        public IActionResult BuscarPontosPerdidosTraidores()
         {
-            RelatorioDTO relatorio = new RelatorioDTO();
-            relatorio.Quantidade = _relatorioBusiness.buscarPontosPerdidosTraidores();
+            RelatorioDto relatorio = new RelatorioDto
+            {
+                Quantidade = _relatorioBusiness.BuscarPontosPerdidosTraidores()
+            };
             return Ok(relatorio);
         }
 
         [HttpGet]
         [Route("buscarPorcentagemTraidores")]
-        public IActionResult buscarPorcentagemTraidores()
+        public IActionResult BuscarPorcentagemTraidores()
         {
-            RelatorioDTO relatorio = new RelatorioDTO();
-            relatorio.Quantidade = _relatorioBusiness.buscarPorcentagemTraidores();
+            RelatorioDto relatorio = new RelatorioDto
+            {
+                Quantidade = _relatorioBusiness.BuscarPorcentagemTraidores()
+            };
             return Ok(relatorio);
         }
 
         [HttpGet]
         [Route("buscarQuantidadeMediaRecurso")]
-        public IActionResult buscarQuantidadeMediaRecurso()
+        public IActionResult BuscarQuantidadeMediaRecurso()
         {
-            return Ok(_relatorioBusiness.buscarQuantidadeMediaRecurso());
+            return Ok(_relatorioBusiness.BuscarQuantidadeMediaRecurso());
         }
     }
 }

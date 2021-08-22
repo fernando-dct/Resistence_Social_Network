@@ -15,22 +15,22 @@ namespace Resistence_XUnitTest.TesteBusiness
         {
             _localRepository = new Mock<ILocalRepository>();
             _localBusiness = new LocalBusiness(_localRepository.Object);
-            _localRepository.Setup(x => x.buscarLocal(It.IsAny<int>())).Returns(new Local());
+            _localRepository.Setup(x => x.BuscarLocal(It.IsAny<int>())).Returns(new Local());
 
         }
 
         [Fact]
-        public void testarAtualizacaoLocal()
+        public void TestarAtualizacaoLocal()
         {
-            _localRepository.Setup(x => x.atualizarLocal(It.IsAny<Local>())).Returns(true);
-            bool retorno = _localBusiness.atualizarLocal(new Local());
+            _localRepository.Setup(x => x.AtualizarLocal(It.IsAny<Local>())).Returns(true);
+            bool retorno = _localBusiness.AtualizarLocal(new Local());
             Assert.True(retorno);
         }
 
         [Fact]
-        public void testarBuscaLocal()
+        public void TestarBuscaLocal()
         {
-            Local retorno = _localBusiness.buscarLocal(1);
+            Local retorno = _localBusiness.BuscarLocal(1);
             Assert.NotNull(retorno);
         }
     }

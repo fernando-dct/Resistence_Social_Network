@@ -21,10 +21,10 @@ namespace Resistence_XUnitTest.TestControllers
         }
 
         [Fact]
-        public void testerBuscaItens()
+        public void TesterBuscaItens()
         {
-            _itemBusiness.Setup(x => x.buscarItens()).Returns(new List<Item>());
-            ObjectResult result = (ObjectResult)_itemController.buscarItens();
+            _itemBusiness.Setup(x => x.BuscarItens()).Returns(new List<Item>());
+            ObjectResult result = (ObjectResult)_itemController.BuscarItens();
             Assert.Equal(_duzentos, result.StatusCode);
         }
 

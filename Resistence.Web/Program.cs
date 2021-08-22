@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Resistence_Web
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

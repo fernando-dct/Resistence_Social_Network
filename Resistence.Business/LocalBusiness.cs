@@ -11,10 +11,10 @@ namespace Resistence_Business
             _localRepository = localRepository;
         }
 
-        public bool atualizarLocal(Local localAtualizado)
+        public bool AtualizarLocal(Local localAtualizado)
         {
 
-            Local local = _localRepository.buscarLocal(localAtualizado.IdRebelde);
+            Local local = _localRepository.BuscarLocal(localAtualizado.IdRebelde);
             if (local == null)
             {
                 return false;
@@ -24,12 +24,12 @@ namespace Resistence_Business
             local.Longitude = localAtualizado.Longitude;
             local.Nome = localAtualizado.Nome;
 
-            return _localRepository.atualizarLocal(local);
+            return _localRepository.AtualizarLocal(local);
         }
 
-        public Local buscarLocal(int idRebelde)
+        public Local BuscarLocal(int idRebelde)
         {
-            return _localRepository.buscarLocal(idRebelde);
+            return _localRepository.BuscarLocal(idRebelde);
         }
     }
 }

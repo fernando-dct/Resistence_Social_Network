@@ -3,7 +3,7 @@ namespace Resistence_Entity.Interfaces
 {
     public interface ILocalRepository
     {
-        Local buscarLocal(int idRebelde);
-        public bool atualizarLocal(Local local);
+        Local BuscarLocal(int idRebelde);
+        public bool AtualizarLocal(Local local);
     }
 }

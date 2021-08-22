@@ -13,31 +13,31 @@ namespace Resistence_Repository
             _context = context;
         }
 
-        public int adicionarRebelde(Rebelde rebelde)
+        public int AdicionarRebelde(Rebelde rebelde)
         {
             _context.Rebeldes.Add(rebelde);
             _context.SaveChanges();
             return rebelde.IdRebelde;
         }
 
-        public Rebelde buscarRebelde(int id)
+        public Rebelde BuscarRebelde(int id)
         {
             return _context.Rebeldes.Find(id);
         }
 
-        public IList<Rebelde> buscarTodosRebelde()
+        public IList<Rebelde> BuscarTodosRebelde()
         {
             return _context.Rebeldes.ToList();
         }
 
 
-        public bool atualizarDadosRebelde(Rebelde rebelde)
+        public bool AtualizarDadosRebelde(Rebelde rebelde)
         {
             _context.Rebeldes.Update(rebelde);
             return _context.SaveChanges() > 0;
         }
 
-        public bool atualizarDadosRebelde(List<Rebelde> rebeldes)
+        public bool AtualizarDadosRebelde(List<Rebelde> rebeldes)
         {
             foreach (Rebelde rebelde in rebeldes)
             {

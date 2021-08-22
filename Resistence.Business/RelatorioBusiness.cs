@@ -16,12 +16,12 @@ namespace Resistence_Business
             _itemRepository = itemRepository;
         }
 
-        public int buscarPontosPerdidosTraidores()
+        public int BuscarPontosPerdidosTraidores()
         {
             int quantidadePontosPerdidos = 0;
 
-            IList<Item> itens = _itemRepository.buscarItens();
-            IList<Rebelde> rebeldes = _rebeldeRepository.buscarTodosRebelde().Where(x => x.QtdeReportadaTraidor >= 3).ToList();
+            IList<Item> itens = _itemRepository.BuscarItens();
+            IList<Rebelde> rebeldes = _rebeldeRepository.BuscarTodosRebelde().Where(x => x.QtdeReportadaTraidor >= 3).ToList();
             foreach (Rebelde rebelde in rebeldes)
             {
                 foreach (Inventario item in rebelde.Inventario)
@@ -33,34 +33,34 @@ namespace Resistence_Business
             return quantidadePontosPerdidos;
         }
 
-        public decimal buscarPorcentagemRebeldes()
+        public decimal BuscarPorcentagemRebeldes()
         {
             int quantidadeRebeldesTotal = 0;
             int quantidadeRebeldesTraidores = 0;
-            buscarQuantidadeRebeldes(ref quantidadeRebeldesTotal, ref quantidadeRebeldesTraidores);
-            return UtilitariosMatemeticos.calcularPorcentagem((quantidadeRebeldesTotal - quantidadeRebeldesTraidores), quantidadeRebeldesTotal);
+            BuscarQuantidadeRebeldes(ref quantidadeRebeldesTotal, ref quantidadeRebeldesTraidores);
+            return UtilitariosMatemeticos.CalcularPorcentagem((quantidadeRebeldesTotal - quantidadeRebeldesTraidores), quantidadeRebeldesTotal);
 
         }
 
-        public decimal buscarPorcentagemTraidores()
+        public decimal BuscarPorcentagemTraidores()
         {
             int quantidadeRebeldesTotal = 0;
             int quantidadeTraidores = 0;
-            buscarQuantidadeRebeldes(ref quantidadeRebeldesTotal, ref quantidadeTraidores);
-            return UtilitariosMatemeticos.calcularPorcentagem(quantidadeTraidores, quantidadeRebeldesTotal);
+            BuscarQuantidadeRebeldes(ref quantidadeRebeldesTotal, ref quantidadeTraidores);
+            return UtilitariosMatemeticos.CalcularPorcentagem(quantidadeTraidores, quantidadeRebeldesTotal);
         }
 
-        private void buscarQuantidadeRebeldes(ref int quantidadeRebeldesTotal, ref int quantidadeRebeldesTraidores)
+        private void BuscarQuantidadeRebeldes(ref int quantidadeRebeldesTotal, ref int quantidadeRebeldesTraidores)
         {
-            IList<Rebelde> rebeldes = _rebeldeRepository.buscarTodosRebelde();
+            IList<Rebelde> rebeldes = _rebeldeRepository.BuscarTodosRebelde();
             quantidadeRebeldesTotal = rebeldes.Count;
             quantidadeRebeldesTraidores = rebeldes.Count(x => x.QtdeReportadaTraidor >= 3);
         }
 
-        public IList<RelatorioMedia> buscarQuantidadeMediaRecurso()
+        public IList<RelatorioMedia> BuscarQuantidadeMediaRecurso()
         {
-            IList<Item> itens = _itemRepository.buscarItens();
-            IList<Rebelde> rebeldes = _rebeldeRepository.buscarTodosRebelde().Where(x => x.QtdeReportadaTraidor < 3).ToList();
+            IList<Item> itens = _itemRepository.BuscarItens();
+            IList<Rebelde> rebeldes = _rebeldeRepository.BuscarTodosRebelde().Where(x => x.QtdeReportadaTraidor < 3).ToList();
             IList<RelatorioMedia> relatorio = new List<RelatorioMedia>();
 
             foreach (Item item in itens)
@@ -81,7 +81,7 @@ namespace Resistence_Business
             {
                 if (relatorioMedia.Media > 0)
                 {
-                    relatorioMedia.Media = relatorioMedia.Media / quantidadeTotalRebeldes;
+                    relatorioMedia.Media /= quantidadeTotalRebeldes;
                 }
             }
 

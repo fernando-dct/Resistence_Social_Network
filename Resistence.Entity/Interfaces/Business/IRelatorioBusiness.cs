@@ -4,9 +4,9 @@ namespace Resistence_Entity.Interfaces
 {
     public interface IRelatorioBusiness
     {
-        decimal buscarPorcentagemTraidores();
-        decimal buscarPorcentagemRebeldes();
-        int buscarPontosPerdidosTraidores();
-        IList<RelatorioMedia> buscarQuantidadeMediaRecurso();
+        decimal BuscarPorcentagemTraidores();
+        decimal BuscarPorcentagemRebeldes();
+        int BuscarPontosPerdidosTraidores();
+        IList<RelatorioMedia> BuscarQuantidadeMediaRecurso();
     }
 }

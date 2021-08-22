@@ -16,12 +16,13 @@ namespace Resistence_XUnitTest
         public TesteBase()
         {
             _context = new BaseContext();
-
-            _items = new List<Item>();
-            _items.Add(new Item { Nome = "arma", Pontuacao = 4 });
-            _items.Add(new Item { Nome = "municao", Pontuacao = 3 });
-            _items.Add(new Item { Nome = "agua", Pontuacao = 2 });
-            _items.Add(new Item { Nome = "comida", Pontuacao = 1 });
+            _items = new List<Item>
+            {
+                new Item { Nome = "arma", Pontuacao = 4 },
+                new Item { Nome = "municao", Pontuacao = 3 },
+                new Item { Nome = "agua", Pontuacao = 2 },
+                new Item { Nome = "comida", Pontuacao = 1 }
+            };
         }
     }
 }

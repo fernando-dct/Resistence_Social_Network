@@ -16,31 +16,31 @@ namespace Resistence_Business
             _rebeldeRepository = rebeldeRepository;
         }
 
-        public bool realizarTrocaItens(List<Inventario> inventarios)
+        public bool RealizarTrocaItens(List<Inventario> inventarios)
         {
             List<Rebelde> rebeldes = new List<Rebelde>();
 
-            Rebelde rebelde1 = _rebeldeRepository.buscarRebelde(inventarios[0].IdRebelde);
-            Rebelde rebelde2 = _rebeldeRepository.buscarRebelde(inventarios[1].IdRebelde);
+            Rebelde rebelde1 = _rebeldeRepository.BuscarRebelde(inventarios[0].IdRebelde);
+            Rebelde rebelde2 = _rebeldeRepository.BuscarRebelde(inventarios[1].IdRebelde);
 
             foreach (Inventario inventarioRebelde in inventarios.Where(x => x.IdRebelde == inventarios[0].IdRebelde))
             {
-                realiazarTroca(ref rebelde1, ref rebelde2, inventarioRebelde);
+                RealiazarTroca(ref rebelde1, ref rebelde2, inventarioRebelde);
             }
 
             foreach (Inventario inventarioRebelde in inventarios.Where(x => x.IdRebelde == inventarios[1].IdRebelde))
             {
-                realiazarTroca(ref rebelde2, ref rebelde1, inventarioRebelde);
+                RealiazarTroca(ref rebelde2, ref rebelde1, inventarioRebelde);
             }
 
             rebeldes.Add(rebelde1);
             rebeldes.Add(rebelde2);
 
-            return _rebeldeRepository.atualizarDadosRebelde(rebeldes);
+            return _rebeldeRepository.AtualizarDadosRebelde(rebeldes);
 
         }
 
-        private void realiazarTroca(ref Rebelde rebeldeSaida, ref Rebelde rebeldeEntrada, Inventario inventarioRebelde)
+        private void RealiazarTroca(ref Rebelde rebeldeSaida, ref Rebelde rebeldeEntrada, Inventario inventarioRebelde)
         {
             Inventario itemRebelde1 = rebeldeSaida.Inventario.FirstOrDefault(x => x.Item == inventarioRebelde.Item);
             if (itemRebelde1.Quantidade == inventarioRebelde.Quantidade)
@@ -55,10 +55,12 @@ namespace Resistence_Business
             Inventario itemRebelde2 = rebeldeEntrada.Inventario.FirstOrDefault(x => x.Item == inventarioRebelde.Item);
             if (itemRebelde2 == null)
             {
-                itemRebelde2 = new Inventario();
-                itemRebelde2.IdRebelde = rebeldeEntrada.IdRebelde;
-                itemRebelde2.Item = inventarioRebelde.Item;
-                itemRebelde2.Quantidade = inventarioRebelde.Quantidade;
+                itemRebelde2 = new Inventario
+                {
+                    IdRebelde = rebeldeEntrada.IdRebelde,
+                    Item = inventarioRebelde.Item,
+                    Quantidade = inventarioRebelde.Quantidade
+                };
                 rebeldeEntrada.Inventario.Add(itemRebelde2);
             }
             else
@@ -67,9 +69,9 @@ namespace Resistence_Business
             }
         }
 
-        public bool validarItemInventarioRebelde(int idRebelde, string item, int quantidade)
+        public bool ValidarItemInventarioRebelde(int idRebelde, string item, int quantidade)
         {
-            return _invetarioRepository.buscarItemInventario(idRebelde, item, quantidade) == null;
+            return _invetarioRepository.BuscarItemInventario(idRebelde, item, quantidade) == null;
         }
     }
 }

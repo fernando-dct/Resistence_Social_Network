@@ -5,7 +5,7 @@ using System.Net;
 
 namespace Resistence_Web.CustomExceptionMiddleware
 {
-    public class ErrorHandlingFilter : ExceptionFilterAttribute
+    public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
         {

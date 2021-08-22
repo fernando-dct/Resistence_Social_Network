@@ -25,34 +25,39 @@ namespace Resistence_XUnitTest.TestControllers
 
 
         [Fact]
-        public void testarTrocaItens()
+        public void TestarTrocaItens()
         {
-            List<TrocaDTO> itens = new List<TrocaDTO>();
+            List<TrocaDto> itens = new List<TrocaDto> 
+            {
+                new TrocaDto
+                {
+                    IdRebelde = 1,
+                    Inventario = new List<InventarioDTO>
+                    {
+                        new InventarioDTO { Item = "Arma", Quantidade = 1 }
+                    }
+                },
+                new TrocaDto 
+                {
+                    IdRebelde = 1,
+                    Inventario = new List<InventarioDTO>
+                    {
+                        new InventarioDTO { Item = "Arma", Quantidade = 1 }
+                    }
+                }
 
-            TrocaDTO item1 = new TrocaDTO();
-            item1.IdRebelde = 1;
-            item1.Inventario = new List<InventarioDTO>();
-            item1.Inventario.Add(new InventarioDTO { Item = "Arma", Quantidade = 1 });
+            };
 
-            itens.Add(item1);
+            _rebeldeBusiness.Setup(x => x.BuscarRebelde(It.IsAny<int>())).Returns(new Rebelde { IdRebelde = 1 });
+            _rebeldeBusiness.Setup(x => x.ValidarRebedeTraidor(It.IsAny<int>())).Returns(false);
 
-            TrocaDTO item2 = new TrocaDTO();
-            item2.IdRebelde = 1;
-            item2.Inventario = new List<InventarioDTO>();
-            item2.Inventario.Add(new InventarioDTO { Item = "Arma", Quantidade = 1 });
+            _itemBusiness.Setup(x => x.ValidarItem(It.IsAny<string>())).Returns(false);
+            _itemBusiness.Setup(x => x.BuscarPontuacaoItem(It.IsAny<string>())).Returns(1);
 
-            itens.Add(item2);
+            _inventarioBusiness.Setup(x => x.ValidarItemInventarioRebelde(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>())).Returns(false);
+            _inventarioBusiness.Setup(x => x.RealizarTrocaItens(It.IsAny<List<Inventario>>())).Returns(true);
 
-            _rebeldeBusiness.Setup(x => x.buscarRebelde(It.IsAny<int>())).Returns(new Rebelde { IdRebelde = 1 });
-            _rebeldeBusiness.Setup(x => x.validarRebedeTraidor(It.IsAny<int>())).Returns(false);
-
-            _itemBusiness.Setup(x => x.validarItem(It.IsAny<string>())).Returns(false);
-            _itemBusiness.Setup(x => x.buscarPontuacaoItem(It.IsAny<string>())).Returns(1);
-
-            _inventarioBusiness.Setup(x => x.validarItemInventarioRebelde(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<int>())).Returns(false);
-            _inventarioBusiness.Setup(x => x.realizarTrocaItens(It.IsAny<List<Inventario>>())).Returns(true);
-
-            ObjectResult result = (ObjectResult)_inventarioController.trocarItens(itens);
+            ObjectResult result = (ObjectResult)_inventarioController.TrocarItens(itens);
             Assert.Equal(_duzentos, result.StatusCode);
         }
     }

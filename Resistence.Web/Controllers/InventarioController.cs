@@ -25,7 +25,7 @@ namespace Resistence_Web.Controllers
 
         [HttpPut]
         [Route("trocarItens")]
-        public IActionResult trocarItens([FromBody] List<TrocaDTO> troca)
+        public IActionResult TrocarItens([FromBody] List<TrocaDto> troca)
         {
             if (troca == null)
             {
@@ -39,14 +39,14 @@ namespace Resistence_Web.Controllers
 
             List<Inventario> inventarios = new List<Inventario>();
 
-            foreach (TrocaDTO item in troca)
+            foreach (TrocaDto item in troca)
             {
-                if (_rebeldeBusiness.buscarRebelde(item.IdRebelde) == null)
+                if (_rebeldeBusiness.BuscarRebelde(item.IdRebelde) == null)
                 {
                     return BadRequest($"Rebelde com id {item.IdRebelde} inválido.");
                 }
 
-                if (_rebeldeBusiness.validarRebedeTraidor(item.IdRebelde))
+                if (_rebeldeBusiness.ValidarRebedeTraidor(item.IdRebelde))
                 {
                     return BadRequest($"O rebelde com id  {item.IdRebelde} foi reportado como traido, dessa forma não é possivel realizar a troca.");
                 }
@@ -59,19 +59,19 @@ namespace Resistence_Web.Controllers
                 foreach (InventarioDTO inventario in item.Inventario)
                 {
                     inventario.Item = inventario.Item.ToLower().RemoveDiacritics();
-                    if (_itemBusiness.validarItem(inventario.Item))
+                    if (_itemBusiness.ValidarItem(inventario.Item))
                     {
                         return BadRequest($"O item { inventario.Item } para troca do rebelde com id {item.IdRebelde} é invalido.");
                     }
 
-                    item.PontuacaoTotalInformada += _itemBusiness.buscarPontuacaoItem(inventario.Item) * inventario.Quantidade;
+                    item.PontuacaoTotalInformada += _itemBusiness.BuscarPontuacaoItem(inventario.Item) * inventario.Quantidade;
 
-                    if (_inventarioBusiness.validarItemInventarioRebelde(item.IdRebelde, inventario.Item, inventario.Quantidade))
+                    if (_inventarioBusiness.ValidarItemInventarioRebelde(item.IdRebelde, inventario.Item, inventario.Quantidade))
                     {
                         return BadRequest($"O item { inventario.Item } não existe ou a quantidade é inválida no inventario do rebelde { item.IdRebelde }.");
                     }
 
-                    inventarios.Add(criarNovoItemInventario(item.IdRebelde, inventario.Item, inventario.Quantidade));
+                    inventarios.Add(CriarNovoItemInventario(item.IdRebelde, inventario.Item, inventario.Quantidade));
                 }
             }
 
@@ -80,19 +80,19 @@ namespace Resistence_Web.Controllers
                 return BadRequest($"A somatoria da pontuação dos itens informados devem ser equavalentes para efetuar a troca.");
             }
 
-            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano();
-
-            retorno.Sucesso = _inventarioBusiness.realizarTrocaItens(inventarios);
+            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano { Sucesso = _inventarioBusiness.RealizarTrocaItens(inventarios) };
 
             return Ok(retorno);
         }
 
-        private Inventario criarNovoItemInventario(int idRebelde, string item, int quantidade)
+        private Inventario CriarNovoItemInventario(int idRebelde, string item, int quantidade)
         {
-            Inventario itemRebelde = new Inventario();
-            itemRebelde.IdRebelde = idRebelde;
-            itemRebelde.Item = item;
-            itemRebelde.Quantidade = quantidade;
+            Inventario itemRebelde = new Inventario
+            {
+                IdRebelde = idRebelde,
+                Item = item,
+                Quantidade = quantidade
+            };
 
             return itemRebelde;
         }

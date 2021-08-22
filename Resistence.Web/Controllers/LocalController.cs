@@ -17,28 +17,27 @@ namespace Resistence_Web.Controllers
 
         [HttpPut]
         [Route("atualizarLocal")]
-        public IActionResult atualizarLocal([FromBody] Local local)
+        public IActionResult AtualizarLocal([FromBody] Local local)
         {
             if (local == null)
             {
                 return BadRequest("Dados do local não informado");
             }
 
-            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano();
-            retorno.Sucesso = _localBusiness.atualizarLocal(local);
+            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano { Sucesso = _localBusiness.AtualizarLocal(local) };
             return Ok(retorno);
         }
 
         [HttpGet]
         [Route("buscarLocal")]
-        public IActionResult buscarLocal(int idRebelde)
+        public IActionResult BuscarLocal(int idRebelde)
         {
             if (idRebelde <= 0)
             {
                 return BadRequest("Dados do rebelde não informado");
             }
 
-            return Ok(_localBusiness.buscarLocal(idRebelde));
+            return Ok(_localBusiness.BuscarLocal(idRebelde));
         }
     }
 }

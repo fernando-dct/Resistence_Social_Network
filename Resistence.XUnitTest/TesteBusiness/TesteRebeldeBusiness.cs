@@ -20,27 +20,27 @@ namespace Resistence_XUnitTest.TesteBusiness
         #region Casos de sucesso
 
         [Fact]
-        public void testarAdicaoRebelde()
+        public void TestarAdicaoRebelde()
         {
-            _rebeldeRepository.Setup(x => x.adicionarRebelde(It.IsAny<Rebelde>())).Returns(1);
-            int idRebelde = _rebeldeBusiness.adicionarRebelde(new Rebelde());
+            _rebeldeRepository.Setup(x => x.AdicionarRebelde(It.IsAny<Rebelde>())).Returns(1);
+            int idRebelde = _rebeldeBusiness.AdicionarRebelde(new Rebelde());
             Assert.True(idRebelde > 0);
         }
 
         [Fact]
-        public void testarBuscaRebelde()
+        public void TestarBuscaRebelde()
         {
-            _rebeldeRepository.Setup(x => x.buscarRebelde(It.IsAny<int>())).Returns(new Rebelde());
-            Rebelde rebelde = _rebeldeBusiness.buscarRebelde(1);
+            _rebeldeRepository.Setup(x => x.BuscarRebelde(It.IsAny<int>())).Returns(new Rebelde());
+            Rebelde rebelde = _rebeldeBusiness.BuscarRebelde(1);
             Assert.NotNull(rebelde);
         }
 
         [Fact]
-        public void testarBuscaTodosRebelde()
+        public void TestarBuscaTodosRebelde()
         {
-            _rebeldeRepository.Setup(x => x.buscarRebelde(It.IsAny<int>())).Returns(new Rebelde());
-            _rebeldeRepository.Setup(x => x.atualizarDadosRebelde(It.IsAny<Rebelde>())).Returns(true);
-            bool retorno = _rebeldeBusiness.reportarTraidor(1);
+            _rebeldeRepository.Setup(x => x.BuscarRebelde(It.IsAny<int>())).Returns(new Rebelde());
+            _rebeldeRepository.Setup(x => x.AtualizarDadosRebelde(It.IsAny<Rebelde>())).Returns(true);
+            bool retorno = _rebeldeBusiness.ReportarTraidor(1);
             Assert.True(retorno);
         }
 

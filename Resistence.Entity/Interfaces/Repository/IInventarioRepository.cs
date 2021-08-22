@@ -2,6 +2,6 @@
 {
     public interface IInventarioRepository
     {
-        Inventario buscarItemInventario(int idRebelde, string item, int quantidade);
+        Inventario BuscarItemInventario(int idRebelde, string item, int quantidade);
     }
 }

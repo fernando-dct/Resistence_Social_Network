@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Resistence_Web.DTO
 {
-    public class TrocaDTO
+    public class TrocaDto
     {
         public int IdRebelde { get; set; }
         [JsonIgnore]

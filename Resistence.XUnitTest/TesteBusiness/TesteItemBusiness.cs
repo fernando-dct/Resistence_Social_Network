@@ -18,18 +18,18 @@ namespace Resistence_XUnitTest.TesteBusiness
         }
 
         [Fact]
-        public void testarBuscaItens()
+        public void TestarBuscaItens()
         {
-            _itemRepository.Setup(x => x.buscarItens()).Returns(_items);
-            IList<Item> retorno = _itemBusiness.buscarItens();
+            _itemRepository.Setup(x => x.BuscarItens()).Returns(_items);
+            IList<Item> retorno = _itemBusiness.BuscarItens();
             Assert.NotNull(retorno);
         }
 
         [Fact]
-        public void testarBuscaPontuacaoItem()
+        public void TestarBuscaPontuacaoItem()
         {
-            _itemRepository.Setup(x => x.buscarItem(It.IsAny<string>())).Returns(new Item { Nome = "arma", Pontuacao = 4});
-            int retorno = _itemBusiness.buscarPontuacaoItem("arma");
+            _itemRepository.Setup(x => x.BuscarItem(It.IsAny<string>())).Returns(new Item { Nome = "arma", Pontuacao = 4});
+            int retorno = _itemBusiness.BuscarPontuacaoItem("arma");
             Assert.True(retorno > 0);
         }
     }

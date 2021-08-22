@@ -23,7 +23,7 @@ namespace Resistence_Web.Controllers
 
         [HttpPost]
         [Route("adicionarRebelde")]
-        public IActionResult adicionarRebelde([FromBody] Rebelde rebelde)
+        public IActionResult AdicionarRebelde([FromBody] Rebelde rebelde)
         {
             if (rebelde == null)
             {
@@ -41,16 +41,16 @@ namespace Resistence_Web.Controllers
             }
 
             string msgInventario = string.Empty;
-            validarInventario(ref msgInventario, rebelde.Inventario);
+            ValidarInventario(ref msgInventario, rebelde.Inventario);
             if (!string.IsNullOrEmpty(msgInventario))
             {
                 return BadRequest(msgInventario);
             }
 
-            int idRebelde = _rebeldeBusiness.adicionarRebelde(rebelde);
+            int idRebelde = _rebeldeBusiness.AdicionarRebelde(rebelde);
             if (idRebelde > 0)
             {
-                return Ok(new RebeldeDTO { IdRebelde = idRebelde });
+                return Ok(new RebeldeDto { IdRebelde = idRebelde });
             }
             else
             {
@@ -58,9 +58,9 @@ namespace Resistence_Web.Controllers
             }
         }
 
-        private void validarInventario(ref string msgInventario, IList<Inventario> inventarios)
+        private void ValidarInventario(ref string msgInventario, IList<Inventario> inventarios)
         {
-            IList<Item> items = _itemBusiness.buscarItens();
+            IList<Item> items = _itemBusiness.BuscarItens();
             StringBuilder stringBuilder = new StringBuilder();
 
             foreach (Inventario inventario in inventarios)
@@ -87,26 +87,28 @@ namespace Resistence_Web.Controllers
 
         [HttpGet]
         [Route("buscarRebelde")]
-        public IActionResult buscarRebelde(int id)
+        public IActionResult BuscarRebelde(int id)
         {
             if (id <= 0)
             {
                 return BadRequest("Dados do rebelde não informado");
             }
-            return Ok(_rebeldeBusiness.buscarRebelde(id));
+            return Ok(_rebeldeBusiness.BuscarRebelde(id));
         }
 
         [HttpPut]
         [Route("reportarTraidor")]
-        public IActionResult reportarTraidor(int id)
+        public IActionResult ReportarTraidor(int id)
         {
             if (id <= 0)
             {
                 return BadRequest("Dados do rebelde não informado");
             }
 
-            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano();
-            retorno.Sucesso = _rebeldeBusiness.reportarTraidor(id);
+            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano
+            {
+                Sucesso = _rebeldeBusiness.ReportarTraidor(id)
+            };
             return Ok(retorno);
         }
     }

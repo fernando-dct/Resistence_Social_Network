@@ -18,18 +18,18 @@ namespace Resistence_XUnitTest.TestControllers
         }
 
         [Fact]
-        public void testarAtualizacaoLocal()
+        public void TestarAtualizacaoLocal()
         {
-            _localBussiness.Setup(x => x.atualizarLocal(It.IsAny<Local>())).Returns(true);
-            ObjectResult result = (ObjectResult)_localController.atualizarLocal(new Local());
+            _localBussiness.Setup(x => x.AtualizarLocal(It.IsAny<Local>())).Returns(true);
+            ObjectResult result = (ObjectResult)_localController.AtualizarLocal(new Local());
             Assert.Equal(_duzentos, result.StatusCode);
         }
 
         [Fact]
-        public void testarBuscaLocall()
+        public void TestarBuscaLocall()
         {
-            _localBussiness.Setup(x => x.buscarLocal(It.IsAny<int>())).Returns(new Local());
-            ObjectResult result = (ObjectResult)_localController.buscarLocal(1);
+            _localBussiness.Setup(x => x.BuscarLocal(It.IsAny<int>())).Returns(new Local());
+            ObjectResult result = (ObjectResult)_localController.BuscarLocal(1);
             Assert.Equal(_duzentos, result.StatusCode);
         }
 

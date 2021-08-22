@@ -23,65 +23,80 @@ namespace Resistence_XUnitTest.TesteBusiness
 
 
         [Fact]
-        public void testarBuscaPontosPerdidosTraidores()
+        public void TestarBuscaPontosPerdidosTraidores()
         {
-            List<Rebelde> rebeldes = new List<Rebelde>();
-            Rebelde rebelde = new Rebelde();
-            rebelde.QtdeReportadaTraidor = 3;
-            rebelde.Inventario = new List<Inventario>();
-            rebelde.Inventario.Add(new Inventario { Quantidade = 10, Item = "arma"});
+            List<Rebelde> rebeldes = new List<Rebelde>
+            {
+                new Rebelde
+                {
+                    QtdeReportadaTraidor = 3,
+                    Inventario = new List<Inventario>
+                    {
+                        new Inventario { Quantidade = 10, Item = "arma"}
+                    }
+                }
+            };
 
-            rebeldes.Add(rebelde);
+            _itemRepository.Setup(x => x.BuscarItens()).Returns(_items);
+            _rebeldeRepository.Setup(x => x.BuscarTodosRebelde()).Returns(rebeldes);
 
-            _itemRepository.Setup(x => x.buscarItens()).Returns(_items);
-            _rebeldeRepository.Setup(x => x.buscarTodosRebelde()).Returns(rebeldes);
-
-            int retorno = _relatorioBusiness.buscarPontosPerdidosTraidores();
+            int retorno = _relatorioBusiness.BuscarPontosPerdidosTraidores();
             Assert.True(retorno > 0);
         }
 
         [Fact]
-        public void testarBuscaPorcentagemRebeldes()
+        public void TestarBuscaPorcentagemRebeldes()
         {
-            List<Rebelde> rebeldes = new List<Rebelde>();
-            Rebelde rebelde = new Rebelde();
-            rebelde.QtdeReportadaTraidor = 0;
-            rebeldes.Add(rebelde);
-            _rebeldeRepository.Setup(x => x.buscarTodosRebelde()).Returns(rebeldes);
+            List<Rebelde> rebeldes = new List<Rebelde>
+            {
+                new Rebelde
+                {
+                    QtdeReportadaTraidor = 0
+                }
+            };
 
-            decimal retorno = _relatorioBusiness.buscarPorcentagemRebeldes();
+            _rebeldeRepository.Setup(x => x.BuscarTodosRebelde()).Returns(rebeldes);
+
+            decimal retorno = _relatorioBusiness.BuscarPorcentagemRebeldes();
             Assert.True(retorno > 0);
         }
 
         [Fact]
-        public void testarBuscaPorcentagemTraidores()
+        public void TestarBuscaPorcentagemTraidores()
         {
-            List<Rebelde> rebeldes = new List<Rebelde>();
-            Rebelde rebelde = new Rebelde();
-            rebelde.QtdeReportadaTraidor = 3;
+            List<Rebelde> rebeldes = new List<Rebelde>
+            {
+                new Rebelde
+                {
+                    QtdeReportadaTraidor = 3
+                }
+            };
+            _rebeldeRepository.Setup(x => x.BuscarTodosRebelde()).Returns(rebeldes);
 
-            rebeldes.Add(rebelde);
-            _rebeldeRepository.Setup(x => x.buscarTodosRebelde()).Returns(rebeldes);
-
-            decimal retorno = _relatorioBusiness.buscarPorcentagemTraidores();
+            decimal retorno = _relatorioBusiness.BuscarPorcentagemTraidores();
             Assert.True(retorno > 0);
         }
 
 
         [Fact]
-        public void testarBuscaQuantidadeMediaRecurso()
+        public void TestarBuscaQuantidadeMediaRecurso()
         {
-            List<Rebelde> rebeldes = new List<Rebelde>();
-            Rebelde rebelde = new Rebelde();
-            rebelde.QtdeReportadaTraidor = 0;
-            rebelde.Inventario = new List<Inventario>();
-            rebelde.Inventario.Add(new Inventario { Quantidade = 10, Item = "arma" });
-            rebeldes.Add(rebelde);
+            List<Rebelde> rebeldes = new List<Rebelde>
+            {
+                new Rebelde
+                {
+                    QtdeReportadaTraidor = 0,
+                    Inventario = new List<Inventario>
+                    {
+                        new Inventario { Quantidade = 10, Item = "arma"}
+                    }
+                }
+            };
 
-            _itemRepository.Setup(x => x.buscarItens()).Returns(_items);
-            _rebeldeRepository.Setup(x => x.buscarTodosRebelde()).Returns(rebeldes);
+            _itemRepository.Setup(x => x.BuscarItens()).Returns(_items);
+            _rebeldeRepository.Setup(x => x.BuscarTodosRebelde()).Returns(rebeldes);
 
-            IList<RelatorioMedia> retorno = _relatorioBusiness.buscarQuantidadeMediaRecurso();
+            IList<RelatorioMedia> retorno = _relatorioBusiness.BuscarQuantidadeMediaRecurso();
             Assert.NotNull(retorno);
         }
     }

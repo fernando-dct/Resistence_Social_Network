@@ -4,8 +4,8 @@ namespace Resistence_Entity.Interfaces
 {
     public interface IItemBusiness
     {
-        IList<Item> buscarItens();
-        bool validarItem(string item);
-        int buscarPontuacaoItem(string item);
+        IList<Item> BuscarItens();
+        bool ValidarItem(string item);
+        int BuscarPontuacaoItem(string item);
     }
 }

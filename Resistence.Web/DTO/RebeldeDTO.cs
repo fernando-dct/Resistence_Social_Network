@@ -1,6 +1,6 @@
 ﻿namespace Resistence_Web.DTO
 {
-    public class RebeldeDTO
+    public class RebeldeDto
     {
         public int IdRebelde { get; set; }
     }

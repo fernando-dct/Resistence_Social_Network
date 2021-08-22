@@ -11,12 +11,12 @@ namespace Resistence_Repository
         {
             _context = context;
         }
-        public Local buscarLocal(int idRebelde)
+        public Local BuscarLocal(int idRebelde)
         {
             return _context.Locais.Where(x => x.IdRebelde == idRebelde).FirstOrDefault();
         }
 
-        public bool atualizarLocal(Local local)
+        public bool AtualizarLocal(Local local)
         {
             _context.Locais.Update(local);
             return (_context.SaveChanges() > 0);

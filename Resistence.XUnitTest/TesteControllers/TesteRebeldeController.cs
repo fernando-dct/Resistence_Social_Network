@@ -25,36 +25,42 @@ namespace Resistence_XUnitTest.TestControllers
         #region Casos de sucesso
 
         [Fact]
-        public void testarAdicaoRebelde()
+        public void TestarAdicaoRebelde()
         {
-            Rebelde rebelde = new Rebelde();
-            rebelde.Inventario = new List<Inventario>();
-            rebelde.Inventario.Add(new Inventario { Quantidade = 10, Item = "arma" });
-            rebelde.Local = new Local { Nome = "Teste Local 1", Latitude = 1.1m, Longitude = 1.1m };
+            Rebelde rebelde = new Rebelde 
+            {
+                Inventario = new List<Inventario> 
+                {
+                    new Inventario { Quantidade = 10, Item = "arma" }
+                },
+                Local = new Local { Nome = "Teste Local 1", Latitude = 1.1m, Longitude = 1.1m }
+            };
 
-            List<Item> items = new List<Item>();
-            items.Add(new Item { Nome = "arma", Pontuacao = 4 });
+            List<Item> items = new List<Item>
+            {
+                new Item { Nome = "arma", Pontuacao = 4 }
+            };
 
-            _rebeldeBusiness.Setup(x => x.adicionarRebelde(It.IsAny<Rebelde>())).Returns(1);
-            _itemBusiness.Setup(x => x.buscarItens()).Returns(items);
+            _rebeldeBusiness.Setup(x => x.AdicionarRebelde(It.IsAny<Rebelde>())).Returns(1);
+            _itemBusiness.Setup(x => x.BuscarItens()).Returns(items);
 
-            ObjectResult retorno = (ObjectResult)_rebeldeController.adicionarRebelde(rebelde);
+            ObjectResult retorno = (ObjectResult)_rebeldeController.AdicionarRebelde(rebelde);
             Assert.Equal(retorno.StatusCode, _duzentos);
         }
 
         [Fact]
-        public void testarReporteTraicao()
+        public void TestarReporteTraicao()
         {
-            _rebeldeBusiness.Setup(x => x.reportarTraidor(It.IsAny<int>())).Returns(true);
-            ObjectResult retorno = (ObjectResult)_rebeldeController.buscarRebelde(1);
+            _rebeldeBusiness.Setup(x => x.ReportarTraidor(It.IsAny<int>())).Returns(true);
+            ObjectResult retorno = (ObjectResult)_rebeldeController.BuscarRebelde(1);
             Assert.Equal(retorno.StatusCode, _duzentos);
         }
 
         [Fact]
-        public void testarBuscaRebelde()
+        public void TestarBuscaRebelde()
         {
-            _rebeldeBusiness.Setup(x => x.buscarRebelde(It.IsAny<int>())).Returns(new Rebelde() { IdRebelde = 1 });
-            ObjectResult retorno = (ObjectResult)_rebeldeController.buscarRebelde(1);
+            _rebeldeBusiness.Setup(x => x.BuscarRebelde(It.IsAny<int>())).Returns(new Rebelde() { IdRebelde = 1 });
+            ObjectResult retorno = (ObjectResult)_rebeldeController.BuscarRebelde(1);
             Assert.Equal(retorno.StatusCode, _duzentos);
         }
 
@@ -63,20 +69,24 @@ namespace Resistence_XUnitTest.TestControllers
         #region Casos de falha
 
         [Fact]
-        public void testarAdicaoRebeldeSemInventario()
+        public void TestarAdicaoRebeldeSemInventario()
         {
             Rebelde rebelde = new Rebelde();
-            ObjectResult retorno = (ObjectResult)_rebeldeController.adicionarRebelde(rebelde);
+            ObjectResult retorno = (ObjectResult)_rebeldeController.AdicionarRebelde(rebelde);
             Assert.Equal(retorno.StatusCode, _quatrocentos);
         }
 
         [Fact]
-        public void testarAdicaoRebeldeSemLocal()
+        public void TestarAdicaoRebeldeSemLocal()
         {
-            Rebelde rebelde = new Rebelde();
-            rebelde.Inventario = new List<Inventario>();
-            rebelde.Inventario.Add(new Inventario { Quantidade = 10, Item = "arma" });
-            ObjectResult retorno = (ObjectResult)_rebeldeController.adicionarRebelde(rebelde);
+            Rebelde rebelde = new Rebelde
+            {
+                Inventario = new List<Inventario>
+                {
+                    new Inventario { Quantidade = 10, Item = "arma" }
+                }
+            };
+            ObjectResult retorno = (ObjectResult)_rebeldeController.AdicionarRebelde(rebelde);
             Assert.Equal(retorno.StatusCode, _quatrocentos);
         }
 

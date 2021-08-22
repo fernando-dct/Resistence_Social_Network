@@ -11,7 +11,7 @@ namespace Resistence_Repository
         {
             _context = context;
         }
-        public Inventario buscarItemInventario(int idRebelde, string item, int quantidade)
+        public Inventario BuscarItemInventario(int idRebelde, string item, int quantidade)
         {
             return _context.Inventarios.Where(x => x.IdRebelde == idRebelde && x.Item.ToLower() == item.ToLower() && x.Quantidade >= quantidade).FirstOrDefault();
         }
