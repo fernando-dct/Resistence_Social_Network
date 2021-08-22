@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "ae628ce7-9c65-4747-9a90-7f42284b9522",
+		"name": "Resistence",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Rebelde",
+			"item": [
+				{
+					"name": "adicionarRebelde",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"Nome\":\"Teste2\",\r\n    \"Idade\":22,\r\n    \"Genero\":\"Feminino\",\r\n    \"Local\":{\r\n        \"Nome\": \"Via Lac\",\r\n        \"Latitude\": 0.1,\r\n        \"Longitude\": 0.1\r\n    },\r\n    \"Inventario\": [\r\n        {\r\n            \"Item\":\"municao\",\r\n            \"Quantidade\": 10\r\n        },\r\n        {\r\n            \"Item\":\"agua\",\r\n            \"Quantidade\": 10\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/Rebelde/adicionarRebelde",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Rebelde",
+								"adicionarRebelde"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarRebelde",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Rebelde/buscarRebelde?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Rebelde",
+								"buscarRebelde"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reportarTraidor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Rebelde/reportarTraidor?id=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Rebelde",
+								"reportarTraidor"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "buscarLocal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Local/buscarLocal?idRebelde=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Local",
+								"buscarLocal"
+							],
+							"query": [
+								{
+									"key": "idRebelde",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizarLocal",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IdRebelde\": 1,\r\n    \"Nome\": \"Via Lactea\",\r\n    \"Latitude\": 1.3,\r\n    \"Longitude\": 1.6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/Local/atualizarLocal",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Local",
+								"atualizarLocal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item",
+			"item": [
+				{
+					"name": "buscarItens",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Item/buscarItens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Item",
+								"buscarItens"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Inventario",
+			"item": [
+				{
+					"name": "trocarItens",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"IdRebelde\": 1,\r\n        \"Inventario\": [\r\n            {\r\n                \"Item\":\"arma\",\r\n                \"Quantidade\": 1\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"IdRebelde\": 2,\r\n        \"Inventario\": [\r\n            {\r\n                \"Item\":\"agua\",\r\n                \"Quantidade\": 2\r\n            }\r\n        ]\r\n        \r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/Inventario/trocarItens",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Inventario",
+								"trocarItens"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Relatorios",
+			"item": [
+				{
+					"name": "buscarPorcentagemRebeldes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Relatorio/buscarPorcentagemRebeldes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Relatorio",
+								"buscarPorcentagemRebeldes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPontosPerdidosTraidores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Relatorio/buscarPontosPerdidosTraidores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Relatorio",
+								"buscarPontosPerdidosTraidores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPorcentagemTraidores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Relatorio/buscarPorcentagemTraidores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Relatorio",
+								"buscarPorcentagemTraidores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarQuantidadeMediaRecurso",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/Relatorio/buscarQuantidadeMediaRecurso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"Relatorio",
+								"buscarQuantidadeMediaRecurso"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
