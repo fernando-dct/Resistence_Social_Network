@@ -4,13 +4,10 @@ using System.Linq;
 
 namespace Resistence_Repository
 {
-    public class LocalRepository : ILocalRepository
+    public class LocalRepository(BaseContext context) : ILocalRepository
     {
-        private readonly BaseContext _context;
-        public LocalRepository(BaseContext context)
-        {
-            _context = context;
-        }
+        private readonly BaseContext _context = context;
+
         public Local BuscarLocal(int idRebelde)
         {
             return _context.Locais.Where(x => x.IdRebelde == idRebelde).FirstOrDefault();

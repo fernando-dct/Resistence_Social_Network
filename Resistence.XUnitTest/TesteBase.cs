@@ -11,18 +11,15 @@ namespace Resistence_XUnitTest
         protected readonly int _quatrocentos = 400;
         protected readonly List<Item> _items;
 
-
-
         public TesteBase()
         {
-            _context = new BaseContext();
-            _items = new List<Item>
-            {
+            _items =
+            [
                 new Item { Nome = "arma", Pontuacao = 4 },
                 new Item { Nome = "municao", Pontuacao = 3 },
                 new Item { Nome = "agua", Pontuacao = 2 },
                 new Item { Nome = "comida", Pontuacao = 1 }
-            };
+            ];
         }
     }
 }

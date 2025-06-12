@@ -4,13 +4,9 @@ using System.Collections.Generic;
 
 namespace Resistence_Business
 {
-    public class ItemBusiness : IItemBusiness
+    public class ItemBusiness(IItemRepository itemRepository) : IItemBusiness
     {
-        private readonly IItemRepository _itemRepository;
-        public ItemBusiness(IItemRepository itemRepository)
-        {
-            _itemRepository = itemRepository;
-        }
+        private readonly IItemRepository _itemRepository = itemRepository;
 
         public IList<Item> BuscarItens()
         {

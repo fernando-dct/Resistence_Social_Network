@@ -20,12 +20,12 @@ namespace Resistence_Repository
 
         public IList<Item> BuscarItens()
         {
-            return _context.Itens.ToList();
+            return [.. _context.Itens];
         }
 
         public Item BuscarItem(string item)
         {
-            return _context.Itens.FirstOrDefault(x => x.Nome.ToLower() == item.ToLower());
+            return _context.Itens.FirstOrDefault(x => x.Nome.Equals(item, System.StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }

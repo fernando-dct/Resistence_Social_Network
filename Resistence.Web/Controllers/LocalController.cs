@@ -7,13 +7,9 @@ namespace Resistence_Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LocalController : ControllerBase
+    public class LocalController(ILocalBusiness localBusiness) : ControllerBase
     {
-        private readonly ILocalBusiness _localBusiness;
-        public LocalController(ILocalBusiness localBusiness)
-        {
-            _localBusiness = localBusiness;
-        }
+        private readonly ILocalBusiness _localBusiness = localBusiness;
 
         [HttpPut]
         [Route("atualizarLocal")]

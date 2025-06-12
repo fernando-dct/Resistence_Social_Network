@@ -11,15 +11,10 @@ namespace Resistence_Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RebeldeController : ControllerBase
+    public class RebeldeController(IRebeldeBusiness rebeldeBusiness, IItemBusiness itemBusiness) : ControllerBase
     {
-        private readonly IRebeldeBusiness _rebeldeBusiness;
-        private readonly IItemBusiness _itemBusiness;
-        public RebeldeController(IRebeldeBusiness rebeldeBusiness, IItemBusiness itemBusiness)
-        {
-            _rebeldeBusiness = rebeldeBusiness;
-            _itemBusiness = itemBusiness;
-        }
+        private readonly IRebeldeBusiness _rebeldeBusiness = rebeldeBusiness;
+        private readonly IItemBusiness _itemBusiness = itemBusiness;
 
         [HttpPost]
         [Route("adicionarRebelde")]
@@ -61,7 +56,7 @@ namespace Resistence_Web.Controllers
         private void ValidarInventario(ref string msgInventario, IList<Inventario> inventarios)
         {
             IList<Item> items = _itemBusiness.BuscarItens();
-            StringBuilder stringBuilder = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             foreach (Inventario inventario in inventarios)
             {
@@ -105,7 +100,7 @@ namespace Resistence_Web.Controllers
                 return BadRequest("Dados do rebelde não informado");
             }
 
-            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano
+            var retorno = new PadraoRetornoBoleano
             {
                 Sucesso = _rebeldeBusiness.ReportarTraidor(id)
             };

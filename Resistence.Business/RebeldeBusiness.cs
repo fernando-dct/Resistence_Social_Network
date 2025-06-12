@@ -3,14 +3,9 @@ using Resistence_Entity.Interfaces;
 
 namespace Resistence_Business
 {
-    public class RebeldeBusiness : IRebeldeBusiness
+    public class RebeldeBusiness(IRebeldeRepository rebeldeRepository) : IRebeldeBusiness
     {
-        private readonly IRebeldeRepository _rebeldeRepository;
-
-        public RebeldeBusiness(IRebeldeRepository rebeldeRepository)
-        {
-            _rebeldeRepository = rebeldeRepository;
-        }
+        private readonly IRebeldeRepository _rebeldeRepository = rebeldeRepository;
 
         public int AdicionarRebelde(Rebelde rebelde)
         {

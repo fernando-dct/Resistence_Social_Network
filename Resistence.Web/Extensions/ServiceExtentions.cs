@@ -7,31 +7,18 @@ namespace Resistence_Web.Extensions
 {
     public static class ServiceExtentions
     {
-        public static void ConfigureBusiness(this IServiceCollection services)
+        public static void ConfigureServices(this IServiceCollection services)
         {
-            BaseContext context = new BaseContext();
+            services.AddScoped<IRebeldeRepository, RebeldeRepository>();
+            services.AddScoped<ILocalRepository, LocalRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IInventarioRepository, InventarioRepository>();
 
-            RebeldeRepository rebeldeRepository = new RebeldeRepository(context);
-            LocalRepository localRepository = new LocalRepository(context);
-            ItemRepository itemRepository = new ItemRepository(context);
-            InventarioRepository inventarioRepository = new InventarioRepository(context);
-
-            RebeldeBusiness rebelde = new RebeldeBusiness(rebeldeRepository);
-            RelatorioBusiness relatorio = new RelatorioBusiness(rebeldeRepository, itemRepository);
-            LocalBusiness local = new LocalBusiness(localRepository);
-            ItemBusiness item = new ItemBusiness(itemRepository);
-            InventarioBusiness inventario = new InventarioBusiness(inventarioRepository, rebeldeRepository);
-
-            services.AddSingleton<IRebeldeRepository>(rebeldeRepository);
-            services.AddSingleton<ILocalRepository>(localRepository);
-            services.AddSingleton<IItemRepository>(itemRepository);
-            services.AddSingleton<IInventarioRepository>(inventarioRepository);
-
-            services.AddSingleton<IRebeldeBusiness>(rebelde);
-            services.AddSingleton<IRelatorioBusiness>(relatorio);
-            services.AddSingleton<ILocalBusiness>(local);
-            services.AddSingleton<IItemBusiness>(item);
-            services.AddSingleton<IInventarioBusiness>(inventario);
+            services.AddTransient<IRebeldeBusiness, RebeldeBusiness>();
+            services.AddTransient<IRelatorioBusiness, RelatorioBusiness>();
+            services.AddTransient<ILocalBusiness, LocalBusiness>();
+            services.AddTransient<IItemBusiness, ItemBusiness>();
+            services.AddTransient<IInventarioBusiness, InventarioBusiness>();
         }
     }
 }

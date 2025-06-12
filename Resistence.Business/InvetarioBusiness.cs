@@ -5,20 +5,14 @@ using System.Linq;
 
 namespace Resistence_Business
 {
-    public class InventarioBusiness : IInventarioBusiness
+    public class InventarioBusiness(IInventarioRepository invetarioRepository, IRebeldeRepository rebeldeRepository) : IInventarioBusiness
     {
-        private readonly IInventarioRepository _invetarioRepository;
-        private readonly IRebeldeRepository _rebeldeRepository;
-
-        public InventarioBusiness(IInventarioRepository invetarioRepository, IRebeldeRepository rebeldeRepository)
-        {
-            _invetarioRepository = invetarioRepository;
-            _rebeldeRepository = rebeldeRepository;
-        }
+        private readonly IInventarioRepository _invetarioRepository = invetarioRepository;
+        private readonly IRebeldeRepository _rebeldeRepository = rebeldeRepository;
 
         public bool RealizarTrocaItens(List<Inventario> inventarios)
         {
-            List<Rebelde> rebeldes = new List<Rebelde>();
+            var rebeldes = new List<Rebelde>();
 
             Rebelde rebelde1 = _rebeldeRepository.BuscarRebelde(inventarios[0].IdRebelde);
             Rebelde rebelde2 = _rebeldeRepository.BuscarRebelde(inventarios[1].IdRebelde);
@@ -40,7 +34,7 @@ namespace Resistence_Business
 
         }
 
-        private void RealiazarTroca(ref Rebelde rebeldeSaida, ref Rebelde rebeldeEntrada, Inventario inventarioRebelde)
+        private static void RealiazarTroca(ref Rebelde rebeldeSaida, ref Rebelde rebeldeEntrada, Inventario inventarioRebelde)
         {
             Inventario itemRebelde1 = rebeldeSaida.Inventario.FirstOrDefault(x => x.Item == inventarioRebelde.Item);
             if (itemRebelde1.Quantidade == inventarioRebelde.Quantidade)

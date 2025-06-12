@@ -6,14 +6,9 @@ namespace Resistence_Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RelatorioController : Controller
+    public class RelatorioController(IRelatorioBusiness relatorioBusiness) : Controller
     {
-        private readonly IRelatorioBusiness _relatorioBusiness;
-
-        public RelatorioController(IRelatorioBusiness relatorioBusiness)
-        {
-            _relatorioBusiness = relatorioBusiness;
-        }
+        private readonly IRelatorioBusiness _relatorioBusiness = relatorioBusiness;
 
         [HttpGet]
         [Route("buscarPorcentagemRebeldes")]

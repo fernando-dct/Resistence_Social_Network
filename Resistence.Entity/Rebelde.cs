@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Resistence_Entity
 {
@@ -11,6 +12,8 @@ namespace Resistence_Entity
         {
             QtdeReportadaTraidor = 0;
         }
+
+        [JsonIgnore]
         public int IdRebelde { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório")]

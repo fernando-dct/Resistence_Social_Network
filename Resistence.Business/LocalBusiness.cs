@@ -3,13 +3,9 @@ using Resistence_Entity.Interfaces;
 
 namespace Resistence_Business
 {
-    public class LocalBusiness : ILocalBusiness
+    public class LocalBusiness(ILocalRepository localRepository) : ILocalBusiness
     {
-        private readonly ILocalRepository _localRepository;
-        public LocalBusiness(ILocalRepository localRepository)
-        {
-            _localRepository = localRepository;
-        }
+        private readonly ILocalRepository _localRepository = localRepository;
 
         public bool AtualizarLocal(Local localAtualizado)
         {

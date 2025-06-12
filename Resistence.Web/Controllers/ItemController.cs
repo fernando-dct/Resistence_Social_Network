@@ -5,14 +5,9 @@ namespace Resistence_Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemController : ControllerBase
+    public class ItemController(IItemBusiness itemBusiness) : ControllerBase
     {
-        private readonly IItemBusiness _itemBusiness;
-        public ItemController(IItemBusiness itemBusiness)
-        {
-
-            _itemBusiness = itemBusiness;
-        }
+        private readonly IItemBusiness _itemBusiness = itemBusiness;
 
         [HttpGet]
         [Route("buscarItens")]

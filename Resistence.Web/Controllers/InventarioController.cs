@@ -9,19 +9,11 @@ namespace Resistence_Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InventarioController : ControllerBase
+    public class InventarioController(IRebeldeBusiness rebeldeBusiness, IInventarioBusiness inventarioBusiness, IItemBusiness itemBusiness) : ControllerBase
     {
-        private readonly IRebeldeBusiness _rebeldeBusiness;
-        private readonly IInventarioBusiness _inventarioBusiness;
-        private readonly IItemBusiness _itemBusiness;
-
-        public InventarioController(IRebeldeBusiness rebeldeBusiness, IInventarioBusiness inventarioBusiness, IItemBusiness itemBusiness)
-        {
-            _rebeldeBusiness = rebeldeBusiness;
-            _inventarioBusiness = inventarioBusiness;
-            _itemBusiness = itemBusiness;
-        }
-
+        private readonly IRebeldeBusiness _rebeldeBusiness = rebeldeBusiness;
+        private readonly IInventarioBusiness _inventarioBusiness = inventarioBusiness;
+        private readonly IItemBusiness _itemBusiness = itemBusiness;
 
         [HttpPut]
         [Route("trocarItens")]
@@ -37,7 +29,7 @@ namespace Resistence_Web.Controllers
                 return BadRequest("É necessário dois rebeldes para realizar uma troca.");
             }
 
-            List<Inventario> inventarios = new List<Inventario>();
+            var inventarios = new List<Inventario>();
 
             foreach (TrocaDto item in troca)
             {
@@ -80,14 +72,14 @@ namespace Resistence_Web.Controllers
                 return BadRequest($"A somatoria da pontuação dos itens informados devem ser equavalentes para efetuar a troca.");
             }
 
-            PadraoRetornoBoleano retorno = new PadraoRetornoBoleano { Sucesso = _inventarioBusiness.RealizarTrocaItens(inventarios) };
+            var retorno = new PadraoRetornoBoleano { Sucesso = _inventarioBusiness.RealizarTrocaItens(inventarios) };
 
             return Ok(retorno);
         }
 
-        private Inventario CriarNovoItemInventario(int idRebelde, string item, int quantidade)
+        private static Inventario CriarNovoItemInventario(int idRebelde, string item, int quantidade)
         {
-            Inventario itemRebelde = new Inventario
+            var itemRebelde = new Inventario
             {
                 IdRebelde = idRebelde,
                 Item = item,

@@ -1,17 +1,12 @@
 ﻿using Resistence_Entity;
 using Resistence_Entity.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Resistence_Repository
 {
-    public class RebeldeRepository : IRebeldeRepository
+    public class RebeldeRepository(BaseContext context) : IRebeldeRepository
     {
-        private readonly BaseContext _context;
-        public RebeldeRepository(BaseContext context)
-        {
-            _context = context;
-        }
+        private readonly BaseContext _context = context;
 
         public int AdicionarRebelde(Rebelde rebelde)
         {
@@ -27,7 +22,7 @@ namespace Resistence_Repository
 
         public IList<Rebelde> BuscarTodosRebelde()
         {
-            return _context.Rebeldes.ToList();
+            return [.. _context.Rebeldes];
         }
 
 
