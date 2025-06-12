@@ -3,6 +3,7 @@ using Resistence_Entity;
 using Resistence_Entity.Interfaces;
 using Resistence_Web.DTO;
 using Resistence_Web.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,6 +90,17 @@ namespace Resistence_Web.Controllers
                 return BadRequest("Dados do rebelde não informado");
             }
             return Ok(_rebeldeBusiness.BuscarRebelde(id));
+        }
+
+        [HttpGet]
+        [Route("BuscarTodosRebelde")]
+        public IActionResult BuscarTodosRebelde()
+        {
+            var dados = _rebeldeBusiness.BuscarTodosRebelde();
+            if (dados == null || dados.Count == 0)
+                return NoContent();
+
+            return Ok(dados);
         }
 
         [HttpPut]

@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace Resistence_Entity
 {
@@ -6,6 +6,7 @@ namespace Resistence_Entity
     {
         [JsonIgnore]
         public int IdLocal { get; set; }
+        [JsonIgnore]
         public int IdRebelde { get; set; }
         public string Nome { get; set; }
         public decimal Latitude { get; set; }

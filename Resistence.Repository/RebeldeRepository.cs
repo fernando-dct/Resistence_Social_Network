@@ -1,6 +1,8 @@
-﻿using Resistence_Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using Resistence_Entity;
 using Resistence_Entity.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Resistence_Repository
 {
@@ -17,12 +19,17 @@ namespace Resistence_Repository
 
         public Rebelde BuscarRebelde(int id)
         {
-            return _context.Rebeldes.Find(id);
+            return _context.Rebeldes
+                .Include(r => r.Local)
+                .Include(r => r.Inventario)
+                .FirstOrDefault(item => item.IdRebelde == id);
         }
 
         public IList<Rebelde> BuscarTodosRebelde()
         {
-            return [.. _context.Rebeldes];
+            return [.. _context.Rebeldes
+                .Include(r => r.Local)
+                .Include(r => r.Inventario)];
         }
 
 

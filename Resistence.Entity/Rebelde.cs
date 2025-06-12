@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Resistence_Entity
 {
@@ -21,6 +21,7 @@ namespace Resistence_Entity
         [Required(ErrorMessage = "A idade é obrigatório")]
         public int Idade { get; set; }
         [Required(ErrorMessage = "O genero é obrigatório")]
+        [JsonIgnore]
         public int QtdeReportadaTraidor { get; set; }
         public string Genero { get; set; }
         public Local Local { get; set; }

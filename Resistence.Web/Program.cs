@@ -14,16 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BaseContext>(options => options.UseInMemoryDatabase("InMemoryProvider"));
 builder.Services.ConfigureServices();
-builder.Services.AddMvc().AddNewtonsoftJson(op =>
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
-    op.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 });
+
 builder.Services.AddMvc(options =>
 {
     options.Filters.Add(new ErrorHandlingFilterAttribute());
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGenNewtonsoftSupport();
+
 
 var app = builder.Build();
 

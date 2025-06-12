@@ -1,5 +1,6 @@
 ﻿using Resistence_Entity;
 using Resistence_Entity.Interfaces;
+using System.Collections.Generic;
 
 namespace Resistence_Business
 {
@@ -15,6 +16,11 @@ namespace Resistence_Business
         public Rebelde BuscarRebelde(int idRebelde)
         {
             return _rebeldeRepository.BuscarRebelde(idRebelde);
+        }
+
+        public IList<Rebelde> BuscarTodosRebelde()
+        {
+            return _rebeldeRepository.BuscarTodosRebelde();
         }
 
         public bool ReportarTraidor(int idRebelde)
